@@ -3,6 +3,7 @@ import './App.css';
 import {Shop} from "./Components/Shop";
 
 class App extends Component {
+
 render() {
   return(
       <div>
