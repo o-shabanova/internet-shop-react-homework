@@ -8,7 +8,8 @@ export class Shop extends Component {
         this.state = {
             products: [],
             cart: [],
-            clearButtons: false
+            clearButtons: false,
+            totalCart: 0
         };
         this.onProductSelect = this.onProductSelect.bind(this);
         this.clearCart = this.clearCart.bind(this);
@@ -17,11 +18,12 @@ export class Shop extends Component {
     onProductSelect(product) {
         let newCart = [...this.state.cart]
         newCart.push(product)
-        this.setState({ cart: newCart })
+        let total = newCart.map(i => i.price).reduce((a, b) => a + b, 0);
+        this.setState({ cart: newCart, totalCart: total })
     }
 
     clearCart() {
-        this.setState({ cart: [], clearButtons: true })
+        this.setState({ cart: [], clearButtons: true, totalCart: 0 })
     }
 
     render() {
@@ -31,7 +33,7 @@ export class Shop extends Component {
                     <h1><center>Магазин</center></h1>
                 </header>
                 <ProductsList products={this.state.products} onProductSelect={this.onProductSelect} clearButtons={this.state.clearButtons}/>
-                <ShoppingCart cart={this.state.cart} clearCart={this.clearCart}/>
+                <ShoppingCart cart={this.state.cart} clearCart={this.clearCart} totalCart={this.state.totalCart}/>
             </div>
         )
     }
