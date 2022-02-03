@@ -17,7 +17,7 @@ export class Product extends Component {
                 <p>ID: {this.props.product.id}</p>
                 <p>Name: {this.props.product.name}</p>
                 <p>Price:  {this.props.product.price} UAH</p>
-                <BuyButton onProductSelect={this.onProductSelect} clearButtons={this.props.clearButtons}/>
+                <BuyButton onProductSelect={this.onProductSelect} isSelected={this.props.product.isInCart}/>
                 <br/>
             </div>
         )
